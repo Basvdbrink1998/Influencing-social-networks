@@ -10,7 +10,8 @@ from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 
 
-def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic, goal):
+def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
+               goal):
     NDIM = 2
     scaler = MinMaxScaler()
 
@@ -20,14 +21,16 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic, 
                   'get_closest_node', 'start at goal', 'None']
     start_functions = [st.get_largest_center, st.get_closest_center, st.avg,
                        st.get_closest_node, st.start_at_goal, None]
-    change_functions = [st.lin_m, st.lin_m, st.lin_m, st.lin_m, st.static, None]
+    change_functions = [st.lin_m, st.lin_m, st.lin_m, st.lin_m, st.static,
+                        None]
     start_time = time.time()
     scores = np.zeros((len(ALPHAS), len(strategies), N_exp))
 
     for j in range(N_exp):
         clusters, clusters_labs = _.simulate_normal_clusters(N, NDIM,
                                                              centers=CENTERS,
-                                                             center_box=(MIN, MAX))
+                                                             center_box=(MIN,
+                                                                         MAX))
         scaler.fit(clusters)
         norm_clusters = scaler.transform(clusters)
         if goal == 'r':
@@ -44,7 +47,8 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic, 
                 res, score = st.influence_cluster(env, start_functions[i],
                                                   change_functions[i],
                                                   norm_clusters, GOAL, NIT,
-                                                  dynamic=dynamic, n_clusters=CENTERS)
+                                                  dynamic=dynamic,
+                                                  n_clusters=CENTERS)
                 scores[k, i, j] = score
     scores = np.array(scores)
 

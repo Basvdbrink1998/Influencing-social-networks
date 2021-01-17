@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from enviroment import SDA_enviroment
 from sklearn.preprocessing import MinMaxScaler
 import _

@@ -39,16 +39,6 @@ Code is multiplatform and should run on any standard operating system (i.e. Linu
 ## Directories
 
 
-## Format of the results
-
-Simulation results are saved as data frames in [feather format](https://blog.rstudio.com/2016/03/29/feather/)
-
-## CoMSES repository
-
-Feather files with original simulation results are available in CoMSES version of the repository.
-They are stored in standard `results` subdirectory.
-They have to moved to `code/data` directory for R scripts to work without any changes.
-
 # Computation time
 
 Simulations are comptationally expensive and may take several hours even when run on multiple cores in parallel.
