@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import cm
 import networkx as nx
 import copy
-from sdnet.utils import make_dist_matrix, euclidean_dist
+from Influence.sdnet.utils import make_dist_matrix, euclidean_dist
 from sdnet import SDA
 
 

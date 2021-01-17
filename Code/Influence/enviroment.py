@@ -162,5 +162,5 @@ class SDA_enviroment:
         """
         A = nx.nx_agraph.to_agraph(G)
         A.layout()
-        A.draw('figures/fancy_G.png')
-        return plt.imread('figures/fancy_G.png')
+        A.draw('fancy_G.png')
+        return plt.imread('fancy_G.png')

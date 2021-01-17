@@ -1,11 +1,12 @@
-import Learning_SDC as ls
 import numpy as np
 import matplotlib.pyplot as plt
 import networkx as nx
-import _
-import DeGroot as dg
-from enviroment import SDA_enviroment
 from sklearn.preprocessing import MinMaxScaler
+
+from Influence import Learning_SDC as ls
+from Influence import _
+from Influence.enviroment import SDA_enviroment
+from Influence import DeGroot as dg
 
 
 N = 5
