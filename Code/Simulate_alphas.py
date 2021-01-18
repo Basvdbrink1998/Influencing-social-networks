@@ -76,7 +76,7 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
     plt.xlabel("Degree of homophily")
     plt.legend()
     end_time = time.time()
-    print("\n\n Time gone by:", end_time-start_time)
+    print("Time gone by:", end_time-start_time)
     plt.savefig(f'Figures/Simluate_alphas__n:{N}_nit:{NIT}_dyn:{dynamic}_g:{goal}.png')
 
 
