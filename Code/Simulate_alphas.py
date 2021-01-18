@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+"""
+    Performs simulations of different strategies influencing social networks
+    for different degrees of homophily.
+"""
+
 from Influence import Static as st
 from Influence import _
 from Influence.enviroment import SDA_enviroment
@@ -12,11 +17,13 @@ import matplotlib.pyplot as plt
 
 def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
                goal):
-    NDIM = 2
+    """
+        Performs simulations of different strategies influencing social
+        networks for different degrees of homophily.
+    """
+    NDIM = 2    # The amount of dimension can be changed.
     scaler = MinMaxScaler()
-
     ALPHAS = np.linspace(a_min, a_max, num=n_a)
-
     strategies = ['Largest_center', 'get_closest_center', 'mean',
                   'get_closest_node', 'start at goal', 'None']
     start_functions = [st.get_largest_center, st.get_closest_center, st.avg,
@@ -27,18 +34,21 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
     scores = np.zeros((len(ALPHAS), len(strategies), N_exp))
 
     for j in range(N_exp):
+        # Generate nodes.
         clusters, clusters_labs = _.simulate_normal_clusters(N, NDIM,
                                                              centers=CENTERS,
                                                              center_box=(MIN,
                                                                          MAX))
         scaler.fit(clusters)
         norm_clusters = scaler.transform(clusters)
+        # Determine the location of the goal.
         if goal == 'r':
             GOAL = np.random.binomial(1, 0.5, NDIM)
         elif goal == 'vr':
             GOAL = (np.random.binomial(1, 0.5, NDIM) - 0.5) * 40
         else:
             GOAL = np.random.random(NDIM)
+        # Run the simulation itself.
         for k in range(len(ALPHAS)):
             for i in range(len(strategies)):
                 env = SDA_enviroment()
@@ -52,11 +62,12 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
                 scores[k, i, j] = score
     scores = np.array(scores)
 
+    # Calculate and plot the mean scores.
     v = []
     m = []
     for s in scores:
         v.append(np.var(s, axis=1))
-        m.append(np.median(s, axis=1))
+        m.append(np.mean(s, axis=1))
     m = np.array(m).transpose()
     v = np.array(v).transpose()
     for s in range(len(m)):
@@ -66,7 +77,7 @@ def simulation(N, NIT, CENTERS, K, a_min, a_max, n_a, MIN, MAX, N_exp, dynamic,
     plt.legend()
     end_time = time.time()
     print("\n\n Time gone by:", end_time-start_time)
-    plt.show()
+    plt.savefig(f'Figures/Simluate_alphas__n:{N}_nit:{NIT}_dyn:{dynamic}_g:{goal}.png')
 
 
 if __name__ == '__main__':
@@ -84,4 +95,6 @@ if __name__ == '__main__':
     parser.add_argument('-dyn', '--dynamic', type=int, help='If the connections between the nodes change with each DeGroot iteration', default=False)
     parser.add_argument('-g', '--goal', type=str, help='The kind of influencing which is done. vr for very radical, r for radical, nr for non radical', default='r')
     args = parser.parse_args()
-    simulation(args.n_nodes, args.n_iterations, args.n_centers, args.k, args.alpha_min, args.alpha_max, args.n_alpha, args.node_minimum, args.node_maximum, args.n_experiments, args.dynamic, args.goal)
+    simulation(args.n_nodes, args.n_iterations, args.n_centers, args.k,
+               args.alpha_min, args.alpha_max, args.n_alpha, args.node_minimum,
+               args.node_maximum, args.n_experiments, args.dynamic, args.goal)

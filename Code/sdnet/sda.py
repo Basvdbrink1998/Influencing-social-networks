@@ -91,7 +91,8 @@ class SDA:
         """
         if b == 0:
             return np.zeros_like(D, dtype=float)
-        P = 1 / (1 + (D/b)**alpha)
+        with np.errstate(over='ignore'):
+            P = 1 / (1 + (D/b)**alpha)
         np.fill_diagonal(P, 0)
         return P
 

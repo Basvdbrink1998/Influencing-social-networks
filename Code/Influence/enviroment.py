@@ -45,13 +45,6 @@ class SDA_enviroment:
         self.clusters = None
         self.cluster_labs = None
 
-    def generate_nodes(self):
-        """
-            Generates nodes which are placed in a belief space.
-        """
-        self.clusters = ls.generate_clusters(self.N, self.NDIM, self.CENTERS)
-        return self.clusters
-
     def insert_nodes(self, nodes, categories=None):
         """
             Inserts given nodes in the belief space.

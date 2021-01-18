@@ -62,7 +62,7 @@ def simulation(ALPHA, NIT, CENTERS, K, s_min, s_max, n_s, MIN, MAX, N_exp, dynam
     plt.legend()
     end_time = time.time()
     print("\n\n Time gone by:", end_time-start_time)
-    plt.show()
+    plt.savefig(f'Figures/Simluate_sizes__a:{ALPHA}_nit:{NIT}_dyn:{dynamic}_g:{goal}.png')
 
 
 if __name__ == '__main__':

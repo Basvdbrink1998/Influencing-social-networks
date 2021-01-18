@@ -1,0 +1,12 @@
+#!/bin/bash
+# Simple script
+
+cd ..
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 0 -g r
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 0 -g vr
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 0 -g nr
+
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g r
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g vr
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g nr
+echo "Simulations completed"

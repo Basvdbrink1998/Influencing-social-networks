@@ -19,8 +19,8 @@ It contains all code necessary to replicate the simulation presented in the thes
 
 # Requirements
 
-The project uses Python.
-Code is multiplatform and should run on any standard operating system (i.e. Linux/Unix, MacOS, Windows).
+The project uses Python and Bash.
+Code is made and tested on a Linux operating system.
 
 ## Python dependencies
 
@@ -42,8 +42,8 @@ Code is multiplatform and should run on any standard operating system (i.e. Linu
   - Module with implementation of the DeGroot model.
 - `Enviroment.py`
   - Module which simulates networks using both the SDA and the DeGroot model.
-- `_.py`
-  - This module implements different strategies to influence a social network.
+- `Learning_SDC.py`
+  - Module with functions to visualize different aspects of the simulation.
 
 Code from Szymon Talaga and Andrzej Nowak:
 - `_.py`
@@ -64,4 +64,4 @@ Code from Szymon Talaga and Andrzej Nowak:
 
 # Computation time
 
-Simulations are comptationally expensive and may take several hours even when run on multiple cores in parallel.
+Simulations are computationally expensive and may take several hours even when run on multiple cores in parallel.

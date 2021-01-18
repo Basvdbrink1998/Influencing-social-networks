@@ -72,47 +72,37 @@ def plot_results(ax, results, node_names, show_legend=False,
     for i in range(len(results)):
         if remove_dupes:
             if not results[i, -1] == results[i, 0]:
-                ax.plot(results[i], label=node_names[i], color=colors[node_names[i]])
+                ax.plot(results[i], label=node_names[i],
+                        color=colors[node_names[i]])
         else:
             ax.plot(results[i], label=node_names[i])
     if show_legend:
         ax.legend(bbox_to_anchor=(1.01, 1), loc='upper left')
 
 
-def insert_node(beliefs, b):
-    """
-        Appends a b vector to a belief matrix.
-    """
-    beliefs = np.append(beliefs, [b], axis=0)
-    return beliefs, len(beliefs) - 1
-
-
-def score(G, b, dist=euclidean_dist, belief_name='belief'):
-    """
-        Returns the distance according to a given distance function between
-        the average belief of a given graph and a given belief vector.
-    """
-    gb = list(nx.get_node_attributes(G, belief_name).values())
-    mean = np.mean(gb, axis=0)
-    s = np.sum(abs(mean-b))
-    return s
-
-
-def generate_network(N, NDIM, clusters, degseq, alpha, K,  belief_name,
-                     media_beliefs=None, media_changes=None):
-    """
-        Returns a network generated using the Social Distance Attachment model
-        and inserts influencer node(s) if media beliefs are given.
-    """
-    media_locs = None
-    if isinstance(media_beliefs, np.ndarray):
-        clusters = np.append(clusters, media_beliefs, axis=0)
-        media_locs = list(range(len(clusters)-len(media_beliefs),
-                                len(clusters)))
-        N += len(media_beliefs)
-    D = make_dist_matrix(clusters, euclidean_dist,
-                         symmetric=True).astype(np.float32)
-    sda = SDA.from_dist_matrix(D, alpha=alpha, k=K, directed=False)
-    A = sda.adjacency_matrix(sparse=False)
-    G = make_graph(A, clusters, belief_name, media_locs=media_locs)
-    return G, media_locs
+# def insert_node(beliefs, b):
+#     """
+#         Appends a b vector to a belief matrix.
+#     """
+#     beliefs = np.append(beliefs, [b], axis=0)
+#     return beliefs, len(beliefs) - 1
+#
+#
+# def generate_network(N, NDIM, clusters, degseq, alpha, K,  belief_name,
+#                      media_beliefs=None, media_changes=None):
+#     """
+#         Returns a network generated using the Social Distance Attachment model
+#         and inserts influencer node(s) if media beliefs are given.
+#     """
+#     media_locs = None
+#     if isinstance(media_beliefs, np.ndarray):
+#         clusters = np.append(clusters, media_beliefs, axis=0)
+#         media_locs = list(range(len(clusters)-len(media_beliefs),
+#                                 len(clusters)))
+#         N += len(media_beliefs)
+#     D = make_dist_matrix(clusters, euclidean_dist,
+#                          symmetric=True).astype(np.float32)
+#     sda = SDA.from_dist_matrix(D, alpha=alpha, k=K, directed=False)
+#     A = sda.adjacency_matrix(sparse=False)
+#     G = make_graph(A, clusters, belief_name, media_locs=media_locs)
+#     return G, media_locs
