@@ -30,11 +30,20 @@ Code is made and tested on a Linux operating system.
    To install them run `pip install -r requirements.txt`.
 
  - It is a good practice to install python dependencies in an isolated virtual environment.
+ - Bash.
 
 # Content of the repository
 
 ## Scripts
 
+- `Simulate_alphas`
+  - Runs the simulations for networks with different degrees of homophily.
+- `Simulate_sizes`
+  - Runs the simulations for with networks with a different amount of nodes.
+- `Visualize_strategy.py`
+  - Visualizes a given strategy step by step.
+- `Step_by_Step.py`
+  - Visualizes the simulation step by step.
 
 ## Python modules
 

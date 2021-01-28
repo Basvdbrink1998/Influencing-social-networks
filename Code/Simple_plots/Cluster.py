@@ -1,8 +1,11 @@
 import networkx as nx
-import numpy as np
 import matplotlib.pyplot as plt
 
-node_color= 'red'
+"""
+    Plots a graph with 2 degrees of clustering for Figure 2.2.
+"""
+
+node_color = 'red'
 node_border_color = 'black'
 node_border_width = .6
 edge_color = 'black'
@@ -20,6 +23,7 @@ probs2 = [[1, 0.5, 0.5],
 
 
 def draw(G, pos, ax):
+    #  Plots a graph.
     nodes1 = nx.draw_networkx_nodes(G, pos=pos, node_color=node_color, ax=ax)
     nodes1.set_edgecolor(node_border_color)
     nodes1.set_linewidth(node_border_width)
@@ -28,6 +32,7 @@ def draw(G, pos, ax):
     ax.axis('off')
 
     return ax
+
 
 fig, axs = plt.subplots(1, 2, figsize=(figsize, figsize))
 

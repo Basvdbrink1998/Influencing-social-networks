@@ -1,5 +1,6 @@
 #!/bin/bash
-# Simple script
+# Generate all plotes of the score of the strategies for different numbers of nodes given a number of experiments for the simulation to perform for each datapoint.
+
 
 cd ..
 python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 0 -g r &
@@ -8,5 +9,14 @@ python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 0 -g nr &
 
 python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g r &
 python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g vr &
-python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g nr
+python3.6 Simulate_sizes.py -n_exp $1 -a 0 -dyn 1 -g nr &
+
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 0 -g r &
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 0 -g vr &
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 0 -g nr &
+
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 1 -g r &
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 1 -g vr &
+python3.6 Simulate_sizes.py -n_exp $1 -a 5 -dyn 1 -g nr
+wait
 echo "Simulations completed"

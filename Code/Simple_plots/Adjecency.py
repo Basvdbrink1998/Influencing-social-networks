@@ -1,6 +1,10 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+"""
+    Adjecency.py: Plots a house graph for Figure 2.1.
+"""
+
 node_color = 'red'
 node_border_color = 'black'
 node_border_width = .6

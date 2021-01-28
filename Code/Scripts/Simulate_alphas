@@ -1,5 +1,5 @@
 #!/bin/bash
-# Generate all plotes of the score of the strategies for different degrees of homophily
+# Generate all plotes of the score of the strategies for different degrees of homophily given a number of experiments for the simulation to perform for each datapoint.
 
 cd ..
 python3.6 Simulate_alphas.py -n_exp $1 -n 20 -dyn 0 -g r &

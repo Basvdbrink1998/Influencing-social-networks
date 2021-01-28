@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+    SDA.py: Plots the probability of the SDA model generating a connection
+    based on different parameters for Figure 2.4.
+"""
 
 def prop(a, b, d):
     return 1/(1+(1/b*d)**a)

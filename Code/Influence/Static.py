@@ -1,18 +1,9 @@
 #!/usr/bin/env python
 
 """
-    Static.py:
+    Static.py: Runs a simulation to evaluate different strategies in
+    influencing social networks.
 """
-
-# from enviroment import SDA_enviroment
-# from sklearn.preprocessing import MinMaxScaler
-# import _
-# import matplotlib.pyplot as plt
-# import numpy as np
-# import DeGroot as dg
-# from sklearn.cluster import KMeans
-# from sdnet.utils import euclidean_dist
-# import time
 
 from Influence.enviroment import SDA_enviroment
 from sklearn.preprocessing import MinMaxScaler
